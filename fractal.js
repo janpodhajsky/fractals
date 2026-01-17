@@ -12,7 +12,6 @@ class FractalGenerator {
         this.maxIterations = 100;
         this.fractalType = 'mandelbrot';
         this.colorScheme = 'classic';
-        this.smoothColoring = true;
         this.juliaC = { real: -0.7, imag: 0.27 };
 
         // Mouse interaction
@@ -89,11 +88,6 @@ class FractalGenerator {
 
         document.getElementById('colorScheme').addEventListener('change', (e) => {
             this.colorScheme = e.target.value;
-            this.render();
-        });
-
-        document.getElementById('smoothColoring').addEventListener('change', (e) => {
-            this.smoothColoring = e.target.checked;
             this.render();
         });
 
@@ -270,7 +264,7 @@ class FractalGenerator {
         });
     }
 
-    // Fractal calculation functions - return smooth iteration value
+    // Fractal calculation functions
     calculateMandelbrot(x0, y0) {
         let x = 0, y = 0;
         let iteration = 0;
@@ -282,11 +276,6 @@ class FractalGenerator {
             iteration++;
         }
 
-        if (iteration < this.maxIterations && this.smoothColoring) {
-            const zn = x*x + y*y;
-            const nu = Math.log(Math.log(zn) / Math.log(2)) / Math.log(2);
-            return iteration + 1 - nu;
-        }
         return iteration;
     }
 
@@ -301,11 +290,6 @@ class FractalGenerator {
             iteration++;
         }
 
-        if (iteration < this.maxIterations && this.smoothColoring) {
-            const zn = x*x + y*y;
-            const nu = Math.log(Math.log(zn) / Math.log(2)) / Math.log(2);
-            return iteration + 1 - nu;
-        }
         return iteration;
     }
 
@@ -320,11 +304,6 @@ class FractalGenerator {
             iteration++;
         }
 
-        if (iteration < this.maxIterations && this.smoothColoring) {
-            const zn = x*x + y*y;
-            const nu = Math.log(Math.log(zn) / Math.log(2)) / Math.log(2);
-            return iteration + 1 - nu;
-        }
         return iteration;
     }
 
@@ -339,11 +318,6 @@ class FractalGenerator {
             iteration++;
         }
 
-        if (iteration < this.maxIterations && this.smoothColoring) {
-            const zn = x*x + y*y;
-            const nu = Math.log(Math.log(zn) / Math.log(2)) / Math.log(2);
-            return iteration + 1 - nu;
-        }
         return iteration;
     }
 
@@ -361,11 +335,6 @@ class FractalGenerator {
             iteration++;
         }
 
-        if (iteration < this.maxIterations && this.smoothColoring) {
-            const zn = x*x + y*y;
-            const nu = Math.log(Math.log(zn) / 2 / Math.log(2)) / Math.log(power);
-            return iteration + 1 - nu;
-        }
         return iteration;
     }
 
@@ -385,11 +354,6 @@ class FractalGenerator {
             iteration++;
         }
 
-        if (iteration < this.maxIterations && this.smoothColoring) {
-            const zn = x*x + y*y;
-            const nu = Math.log(Math.log(zn) / Math.log(2)) / Math.log(2);
-            return iteration + 1 - nu;
-        }
         return iteration;
     }
 
@@ -404,17 +368,12 @@ class FractalGenerator {
             iteration++;
         }
 
-        if (iteration < this.maxIterations && this.smoothColoring) {
-            const zn = x*x + y*y;
-            const nu = Math.log(Math.log(zn) / Math.log(2)) / Math.log(2);
-            return iteration + 1 - nu;
-        }
         return iteration;
     }
 
     // Color schemes
     getColor(iteration) {
-        if (Math.floor(iteration) >= this.maxIterations) {
+        if (iteration >= this.maxIterations) {
             return [0, 0, 0];
         }
 
