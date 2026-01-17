@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generátor Fraktálů</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button id="menuToggle" title="Nastavení">☰</button>
+
+    <div id="controls" class="hidden">
+        <h2>Generátor Fraktálů</h2>
+
+        <div class="control-group">
+            <label for="fractalType">Typ fraktálu:</label>
+            <select id="fractalType">
+                <option value="mandelbrot">Mandelbrot Set</option>
+                <option value="julia">Julia Set</option>
+                <option value="burningship">Burning Ship</option>
+                <option value="tricorn">Tricorn (Mandelbar)</option>
+                <option value="multibrot3">Multibrot (power 3)</option>
+                <option value="multibrot4">Multibrot (power 4)</option>
+                <option value="phoenix">Phoenix</option>
+                <option value="perpendicular">Perpendicular Mandelbrot</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label for="maxIterations">Základní iterace:</label>
+            <input type="range" id="maxIterations" min="50" max="500" value="100">
+            <span id="iterValue">100</span>
+            <small style="color: #888; font-size: 0.8em;">Počet se automaticky zvyšuje při zoomu</small>
+        </div>
+
+        <div class="control-group">
+            <label for="colorScheme">Barevná schéma:</label>
+            <select id="colorScheme">
+                <option value="classic">Klasická</option>
+                <option value="fire">Oheň</option>
+                <option value="ocean">Oceán</option>
+                <option value="rainbow">Duha</option>
+                <option value="sunset">Západ slunce</option>
+                <option value="ice">Led</option>
+                <option value="psychedelic">Psychedelická</option>
+                <option value="gold">Zlatá</option>
+                <option value="copper">Měděná</option>
+                <option value="forest">Les</option>
+                <option value="grayscale">Černobílá</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label>
+                <input type="checkbox" id="smoothColoring" checked>
+                Plynulé barvy (smooth)
+            </label>
+        </div>
+
+        <div id="juliaControls" style="display: none;">
+            <div class="control-group">
+                <label for="juliaReal">Julia C (Real):</label>
+                <input type="range" id="juliaReal" min="-2" max="2" step="0.01" value="-0.7">
+                <span id="juliaRealValue">-0.7</span>
+            </div>
+            <div class="control-group">
+                <label for="juliaImag">Julia C (Imag):</label>
+                <input type="range" id="juliaImag" min="-2" max="2" step="0.01" value="0.27">
+                <span id="juliaImagValue">0.27</span>
+            </div>
+        </div>
+
+        <button id="resetBtn">Reset zobrazení</button>
+
+        <div class="info">
+            <p><strong>Ovládání:</strong></p>
+            <p>• Táhněte myší pro výběr oblasti</p>
+            <p>• Vybraná oblast se přiblíží</p>
+            <p>• Každé přiblížení = nový začátek</p>
+            <p id="coordsInfo">Zoom: 1.0x</p>
+        </div>
+    </div>
+
+    <canvas id="fractalCanvas"></canvas>
+    <div id="loading">Generuji fraktál...</div>
+
+    <script src="fractal.js"></script>
+</body>
+</html>
