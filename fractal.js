@@ -275,7 +275,7 @@ class FractalGenerator {
         let x = 0, y = 0;
         let iteration = 0;
 
-        while (x*x + y*y <= 4 && iteration < this.maxIterations) {
+        while (x*x + y*y <= 256 && iteration < this.maxIterations) {
             const xtemp = x*x - y*y + x0;
             y = 2*x*y + y0;
             x = xtemp;
@@ -283,8 +283,9 @@ class FractalGenerator {
         }
 
         if (iteration < this.maxIterations && this.smoothColoring) {
-            const zn = Math.sqrt(x*x + y*y);
-            return iteration + 1 - Math.log(Math.log(zn)) / Math.log(2);
+            const zn = x*x + y*y;
+            const nu = Math.log(Math.log(zn) / 2 / Math.log(2)) / Math.log(2);
+            return iteration + 1 - nu;
         }
         return iteration;
     }
@@ -293,7 +294,7 @@ class FractalGenerator {
         let x = x0, y = y0;
         let iteration = 0;
 
-        while (x*x + y*y <= 4 && iteration < this.maxIterations) {
+        while (x*x + y*y <= 256 && iteration < this.maxIterations) {
             const xtemp = x*x - y*y + this.juliaC.real;
             y = 2*x*y + this.juliaC.imag;
             x = xtemp;
@@ -301,8 +302,9 @@ class FractalGenerator {
         }
 
         if (iteration < this.maxIterations && this.smoothColoring) {
-            const zn = Math.sqrt(x*x + y*y);
-            return iteration + 1 - Math.log(Math.log(zn)) / Math.log(2);
+            const zn = x*x + y*y;
+            const nu = Math.log(Math.log(zn) / 2 / Math.log(2)) / Math.log(2);
+            return iteration + 1 - nu;
         }
         return iteration;
     }
@@ -311,7 +313,7 @@ class FractalGenerator {
         let x = 0, y = 0;
         let iteration = 0;
 
-        while (x*x + y*y <= 4 && iteration < this.maxIterations) {
+        while (x*x + y*y <= 256 && iteration < this.maxIterations) {
             const xtemp = x*x - y*y + x0;
             y = Math.abs(2*x*y) + y0;
             x = Math.abs(xtemp);
@@ -319,8 +321,9 @@ class FractalGenerator {
         }
 
         if (iteration < this.maxIterations && this.smoothColoring) {
-            const zn = Math.sqrt(x*x + y*y);
-            return iteration + 1 - Math.log(Math.log(zn)) / Math.log(2);
+            const zn = x*x + y*y;
+            const nu = Math.log(Math.log(zn) / 2 / Math.log(2)) / Math.log(2);
+            return iteration + 1 - nu;
         }
         return iteration;
     }
@@ -329,7 +332,7 @@ class FractalGenerator {
         let x = 0, y = 0;
         let iteration = 0;
 
-        while (x*x + y*y <= 4 && iteration < this.maxIterations) {
+        while (x*x + y*y <= 256 && iteration < this.maxIterations) {
             const xtemp = x*x - y*y + x0;
             y = -2*x*y + y0; // Complex conjugate
             x = xtemp;
@@ -337,8 +340,9 @@ class FractalGenerator {
         }
 
         if (iteration < this.maxIterations && this.smoothColoring) {
-            const zn = Math.sqrt(x*x + y*y);
-            return iteration + 1 - Math.log(Math.log(zn)) / Math.log(2);
+            const zn = x*x + y*y;
+            const nu = Math.log(Math.log(zn) / 2 / Math.log(2)) / Math.log(2);
+            return iteration + 1 - nu;
         }
         return iteration;
     }
@@ -347,7 +351,7 @@ class FractalGenerator {
         let x = 0, y = 0;
         let iteration = 0;
 
-        while (x*x + y*y <= 4 && iteration < this.maxIterations) {
+        while (x*x + y*y <= 256 && iteration < this.maxIterations) {
             const r = Math.sqrt(x*x + y*y);
             const theta = Math.atan2(y, x);
             const rPow = Math.pow(r, power);
@@ -358,8 +362,9 @@ class FractalGenerator {
         }
 
         if (iteration < this.maxIterations && this.smoothColoring) {
-            const zn = Math.sqrt(x*x + y*y);
-            return iteration + 1 - Math.log(Math.log(zn)) / Math.log(power);
+            const zn = x*x + y*y;
+            const nu = Math.log(Math.log(zn) / 2 / Math.log(2)) / Math.log(power);
+            return iteration + 1 - nu;
         }
         return iteration;
     }
@@ -370,7 +375,7 @@ class FractalGenerator {
         let iteration = 0;
         const p = 0.5667;
 
-        while (x*x + y*y <= 4 && iteration < this.maxIterations) {
+        while (x*x + y*y <= 256 && iteration < this.maxIterations) {
             const xtemp = x*x - y*y + x0 + p * xPrev;
             const ytemp = 2*x*y + y0 + p * yPrev;
             xPrev = x;
@@ -381,8 +386,9 @@ class FractalGenerator {
         }
 
         if (iteration < this.maxIterations && this.smoothColoring) {
-            const zn = Math.sqrt(x*x + y*y);
-            return iteration + 1 - Math.log(Math.log(zn)) / Math.log(2);
+            const zn = x*x + y*y;
+            const nu = Math.log(Math.log(zn) / 2 / Math.log(2)) / Math.log(2);
+            return iteration + 1 - nu;
         }
         return iteration;
     }
@@ -391,7 +397,7 @@ class FractalGenerator {
         let x = 0, y = 0;
         let iteration = 0;
 
-        while (x*x + y*y <= 4 && iteration < this.maxIterations) {
+        while (x*x + y*y <= 256 && iteration < this.maxIterations) {
             const xtemp = x*x - y*y + x0;
             y = 2 * Math.abs(x) * Math.abs(y) + y0;
             x = xtemp;
@@ -399,8 +405,9 @@ class FractalGenerator {
         }
 
         if (iteration < this.maxIterations && this.smoothColoring) {
-            const zn = Math.sqrt(x*x + y*y);
-            return iteration + 1 - Math.log(Math.log(zn)) / Math.log(2);
+            const zn = x*x + y*y;
+            const nu = Math.log(Math.log(zn) / 2 / Math.log(2)) / Math.log(2);
+            return iteration + 1 - nu;
         }
         return iteration;
     }
